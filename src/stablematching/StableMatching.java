@@ -4,15 +4,11 @@
  * and open the template in the editor.
  */
 package stablematching;
-import com.sun.jmx.remote.internal.ArrayQueue;
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileReader;
 import java.util.AbstractMap.SimpleEntry;
-import java.util.AbstractQueue;
 import java.util.ArrayList;
-import java.util.PriorityQueue;
-import java.util.Queue;
+
 
 /**
  *
