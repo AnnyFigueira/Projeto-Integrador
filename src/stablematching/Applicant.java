@@ -5,6 +5,7 @@
  */
 package stablematching;
 
+import java.util.ArrayList;
 import java.util.Queue;
 
 
@@ -14,16 +15,19 @@ import java.util.Queue;
  * @author Anny
  */
 class Applicant {
-    String name;
-    University university;
-    Queue<University> queue;
-    public Applicant(String n, Queue q)
+    private final String name;
+    private int university;
+    private final ArrayList<Integer> queue;
+    public Applicant(String n, ArrayList<Integer> q)
     {
         name = n;
         queue = q;
+        university = -1;
     }
     public String getName(){ return name; }
-    public University getUniversity() { return university; }
-    public Queue getQueue() { return queue;}
-    public void setUniversity (University university) { this.university = university; }
+    public int getUniversity() { return university; }
+    public ArrayList<Integer> getQueue() { return queue;}
+    public void setUniversity (int university) { this.university = university; }
+    public boolean isFree() { return (university == -1); }
+    public int queueStatus() { return queue.get(0); }
 }
