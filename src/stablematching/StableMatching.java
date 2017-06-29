@@ -108,9 +108,9 @@ public class StableMatching {
                     }
                     if(u.getApplicantPosition(j) < worstPosInPrefList)
                     {
-                        int worstApplicant = u.getPreferences().get(worstPosInPrefList);
-                        Applicant worst = applicants.get(worstApplicant);
-                        worst.setUniversity(-1);
+                        int worstApplicantIndex = u.getPreferences().get(worstPosInPrefList);
+                        Applicant worstApplicant = applicants.get(worstApplicantIndex);
+                        worstApplicant.setUniversity(-1);
                         existFree = true;
                         u.replaceApplicant(worstPosInAccepted, j);
                         a.setUniversity(i);
