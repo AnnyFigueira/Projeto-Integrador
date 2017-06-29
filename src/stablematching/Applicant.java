@@ -8,8 +8,6 @@ package stablematching;
 import java.util.ArrayList;
 import java.util.Queue;
 
-
-
 /**
  *
  * @author Anny
@@ -17,8 +15,8 @@ import java.util.Queue;
 class Applicant {
     private final String name;
     private int university;
-    private final ArrayList<Integer> queue;
-    public Applicant(String n, ArrayList<Integer> q)
+    private final Queue<Integer> queue;
+    public Applicant(String n, Queue<Integer> q)
     {
         name = n;
         queue = q;
@@ -26,8 +24,8 @@ class Applicant {
     }
     public String getName(){ return name; }
     public int getUniversity() { return university; }
-    public ArrayList<Integer> getQueue() { return queue;}
+    public Queue<Integer> getQueue() { return queue;}
     public void setUniversity (int university) { this.university = university; }
     public boolean isFree() { return (university == -1); }
-    public int queueStatus() { return queue.get(0); }
+    public boolean queueStatus() { return !queue.isEmpty(); }
 }

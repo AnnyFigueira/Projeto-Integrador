@@ -4,14 +4,11 @@
  * and open the template in the editor.
  */
 package stablematching;
-import com.sun.jmx.remote.internal.ArrayQueue;
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileReader;
 import java.util.AbstractMap.SimpleEntry;
-import java.util.AbstractQueue;
 import java.util.ArrayList;
-import java.util.PriorityQueue;
+import java.util.LinkedList;
 import java.util.Queue;
 
 /**
@@ -61,7 +58,7 @@ public class StableMatching {
             for(k = 0; k < numberOfApplicants; k++)
             {
                 String appName = reader.readLine();
-                ArrayList<Integer> queue = new ArrayList<Integer>();
+                Queue<Integer> queue = new LinkedList<Integer>();
                 String[] list = reader.readLine().split("\\s");
                 for(int j = 0; j < list.length; j++) { queue.add(Integer.parseInt(list[j])); }
                 Applicant app = new Applicant(appName, queue);
@@ -85,9 +82,9 @@ public class StableMatching {
         for(int j = 0; j < applicants.size(); j++)
         {
             Applicant a = applicants.get(j);
-            if(a.isFree() && a.queueStatus() != -1)
+            if(a.isFree() && a.queueStatus())
             {
-                int i = (Integer)a.getQueue().remove(0);
+                int i = (Integer)a.getQueue().poll();
                 University u = universities.get(i);
                 if(u.getQuota() > 0) 
                 {
