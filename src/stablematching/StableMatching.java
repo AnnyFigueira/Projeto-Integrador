@@ -94,23 +94,25 @@ public class StableMatching {
                 }
                 else
                 {
-                    int worstPos = 0;
+                    int worstPosInPrefList = 0;
+                    int worstPosInAccepted = 0;
                     for(int p = 0; p < u.getAccepted().size(); p++)
                     {
-                        int acc = u.getAccepted().get(p);
-                        int current = u.getApplicantPosition(acc);
-                        if(u.getApplicantPosition(acc) > worstPos)
+                        int currentAcc = u.getAccepted().get(p);
+                        int currentPosInPrefList = u.getApplicantPosition(currentAcc);
+                        if(currentPosInPrefList > worstPosInPrefList)
                         {
-                            worstPos = current;
+                            worstPosInPrefList = currentPosInPrefList;
+                            worstPosInAccepted = p;
                         }
                     }
-                    if(u.getApplicantPosition(j) < worstPos)
+                    if(u.getApplicantPosition(j) < worstPosInPrefList)
                     {
-                        int worstIndex = u.getPreferences().get(worstPos);
-                        Applicant worst = applicants.get(worstIndex);
+                        int worstApplicant = u.getPreferences().get(worstPosInPrefList);
+                        Applicant worst = applicants.get(worstApplicant);
                         worst.setUniversity(-1);
                         existFree = true;
-                        u.replaceApplicant(worstIndex, j);
+                        u.replaceApplicant(worstPosInAccepted, j);
                         a.setUniversity(i);
                     }
                     else { existFree = true; }
