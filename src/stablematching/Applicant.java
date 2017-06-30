@@ -27,5 +27,6 @@ class Applicant {
     public Queue<Integer> getQueue() { return queue;}
     public void setUniversity (int university) { this.university = university; }
     public boolean isFree() { return (university == -1); }
-    public boolean queueStatus() { return !queue.isEmpty(); }
+    public Integer queueStatus() { return queue.peek(); }
+    public boolean queueIsNotEmpty() { return !queue.isEmpty(); }
 }

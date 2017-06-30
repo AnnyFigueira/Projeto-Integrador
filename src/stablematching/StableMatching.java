@@ -10,6 +10,8 @@ import java.util.AbstractMap.SimpleEntry;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
+import java.io.PrintWriter;
+import java.io.FileWriter;
 
 /**
  *
@@ -68,12 +70,19 @@ public class StableMatching {
             }
         }
         catch(Exception e){};
-        
+        long start = System.nanoTime();
         stableMatching();
-        for(int j = 0; j < applicants.size(); j++)
+        long end = System.nanoTime();
+        double elapsedTime = (end - start)/1000000000.0;
+        try
         {
-            System.out.println(applicants.get(j).getName() + " " + applicants.get(j).getUniversity());
-        }
+            PrintWriter writer = new PrintWriter(new FileWriter("output.txt"));
+            for(int j = 0; j < applicants.size(); j++) { writer.println(applicants.get(j).getName() + " " + applicants.get(j).getUniversity()); }
+            writer.close();
+        }        
+        catch(Exception e){};
+        
+        System.out.println(elapsedTime);
     }
     
     public static void stableMatching()
@@ -82,7 +91,7 @@ public class StableMatching {
         for(int j = 0; j < applicants.size(); j++)
         {
             Applicant a = applicants.get(j);
-            if(a.isFree() && a.queueStatus())
+            if(a.isFree() && a.queueIsNotEmpty())
             {
                 int i = (Integer)a.getQueue().poll();
                 University u = universities.get(i);
