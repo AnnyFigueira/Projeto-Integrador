@@ -6,7 +6,6 @@
 package stablematching;
 import java.io.BufferedReader;
 import java.io.FileReader;
-import java.util.AbstractMap.SimpleEntry;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
@@ -20,7 +19,6 @@ import java.io.FileWriter;
 public class StableMatching {
     static ArrayList<Applicant> applicants = new ArrayList<Applicant>();
     static ArrayList<University> universities = new ArrayList<University>();
-    static ArrayList<SimpleEntry<Applicant, University>> matchings;
     
     /**
      * @param args the command line arguments
