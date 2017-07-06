@@ -20,6 +20,7 @@ public class StableMatching {
     static ArrayList<Applicant> applicants = new ArrayList<Applicant>();
     static ArrayList<University> universities = new ArrayList<University>();
     
+    static int count;
     /**
      * @param args the command line arguments
      */
@@ -81,23 +82,44 @@ public class StableMatching {
         catch(Exception e){};
         
         System.out.println(elapsedTime);
+        
+        System.out.println(count);
     }
     
     public static void stableMatching()
     {
         boolean existFree = false;
+        count++;
+        
         for(int j = 0; j < applicants.size(); j++)
         {
+            count++; //for condition
+            
             Applicant a = applicants.get(j);
+            count++;
+            
             if(a.isFree() && a.queueIsNotEmpty())
             {
+                count++; //if condition
+                
                 int i = (Integer)a.getQueue().poll();
+                count++;
+                
                 University u = universities.get(i);
+                count++;
+                        
                 if(u.getQuota() > 0) 
                 {
+                    count++; //if condition
+                    
                     u.accept(j);
+                    count++;
+                    
                     a.setUniversity(i);
+                    count++;
+                    
                     u.decQuota();
+                    count++;
                 }
                 else
                 {
@@ -105,22 +127,42 @@ public class StableMatching {
                     int worstPosInAccepted = 0;
                     for(int p = 0; p < u.getAccepted().size(); p++)
                     {
+                        count++; //for condition
+                        
                         int currentAcc = u.getAccepted().get(p);
+                        count++;
+                        
                         int currentPosInPrefList = u.getApplicantPosition(currentAcc);
+                        count++;
+                        
                         if(currentPosInPrefList > worstPosInPrefList)
                         {
+                            count++; //if condition
+                            
                             worstPosInPrefList = currentPosInPrefList;
                             worstPosInAccepted = p;
                         }
                     }
                     if(u.getApplicantPosition(j) < worstPosInPrefList)
                     {
+                        count++; //if condition
+                        
                         int worstApplicantIndex = u.getPreferences().get(worstPosInPrefList);
+                        count++;
+                        
                         Applicant worstApplicant = applicants.get(worstApplicantIndex);
+                        count++;
+                        
                         worstApplicant.setUniversity(-1);
+                        count++;
+                        
                         existFree = true;
+                        
                         u.replaceApplicant(worstPosInAccepted, j);
+                        count++;
+                        
                         a.setUniversity(i);
+                        count++;
                     }
                     else { existFree = true; }
                 }
